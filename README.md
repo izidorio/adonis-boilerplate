@@ -41,3 +41,5 @@ adonis migration:run --seed
 ```bash
 adonis serve --dev
 ```
+### Se você usa o [Insomnia](https://insomnia.rest/) importe .json com as principais rotas
+de: `insomnia/Insomnia_2020-09-10.json`
