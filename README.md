@@ -30,4 +30,7 @@ const user = await Factory.model('App/Modules/Users/Models/User').make({
 ```bash
 adonis migration:run --seed
 ```
-
+### Levantar o servidor
+```bash
+adonis serve --dev
+```
