@@ -41,7 +41,7 @@ Factory.blueprint('App/Modules/Users/Models/User', (faker, i, data = {}) => ({
 }));
 
 Factory.blueprint('App/Modules/People/Models/Situation', (faker, i, data = {}) => {
-  const situationType = ['Morto', 'Foragido', 'Desaparecido'];
+  const situationType = ['Morto', 'Desaparecido'];
 
   return ({
     person_id: 1,
