@@ -80,10 +80,6 @@ class User extends Model {
   }
 
   /* relacionamentos */
-  person() {
-    return this.belongsTo('App/Modules/People/Models/Person');
-  }
-
   roles() {
     return this.belongsToMany('Adonis/Acl/Role');
   }

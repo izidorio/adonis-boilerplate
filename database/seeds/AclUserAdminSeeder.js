@@ -26,6 +26,7 @@ class AclUserAdminSeeder {
         name: 'Editar Pessoas', slug: 'u-people', description: null, ...timestamps,
       },
     ];
+
     await Database.table('permissions')
       .insert(permissions);
 
@@ -46,21 +47,13 @@ class AclUserAdminSeeder {
       },
     );
 
-    const person = await Factory.model('App/Modules/People/Models/Person').create({
+    const user = await Factory.model('App/Modules/Users/Models/User').create({
       name: 'Izidorio Bento',
-      document: '12345678901',
-      gender: 'Masculino',
-      ...timestamps,
-    });
-
-    const user = await Factory.model('App/Modules/Users/Models/User').make({
       email: 'izidoriojr@gmail.com',
+      document: '12345678901',
       password: '123456',
       ...timestamps,
     });
-
-    await person.user().save(user);
-    await user.reload();
 
     await Database.table('role_user').insert(
       {

@@ -35,6 +35,9 @@ Factory.blueprint('App/Modules/People/Models/Person', (faker, i, data = {}) => {
 });
 
 Factory.blueprint('App/Modules/Users/Models/User', (faker, i, data = {}) => ({
+  name: faker.name({ middle: true }),
+  document: faker.cpf().replace(/\D/g, ''),
+  phone: `(21) ${faker.integer({ min: 90000, max: 99999 })}-${faker.integer({ min: 1000, max: 9999 })}`,
   email: faker.email(),
   password: faker.string(),
   ...data,
@@ -45,7 +48,7 @@ Factory.blueprint('App/Modules/People/Models/Situation', (faker, i, data = {}) =
 
   return ({
     person_id: 1,
-    situation_type: situationType[faker.integer({ min: 0, max: 2 })],
+    situation_type: situationType[faker.integer({ min: 0, max: 1 })],
     started_at: new Date(),
     ...data,
   });

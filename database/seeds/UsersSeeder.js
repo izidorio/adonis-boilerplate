@@ -10,22 +10,9 @@ const timestamps = {
 
 class AclUserAdmSeeder {
   async run() {
-    const people = await Factory
-      .model('App/Modules/People/Models/Person')
-      .createMany(10, { ...timestamps });
-
-    const arrayPromises = people.map(async (person) => {
-      const user = await Factory
-        .model('App/Modules/Users/Models/User')
-        .make({
-          password: '123456',
-          ...timestamps,
-        });
-
-      await person.user().save(user);
-    });
-
-    await Promise.all(arrayPromises);
+    await Factory
+      .model('App/Modules/Users/Models/User')
+      .createMany(10, { password: '123456', ...timestamps });
   }
 }
 

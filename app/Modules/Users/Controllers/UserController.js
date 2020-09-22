@@ -2,7 +2,6 @@
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const User = use('App/Modules/Users/Models/User');
-const Database = use('Database');
 
 const Chance = use('chance');
 
@@ -16,30 +15,20 @@ class UserController {
       'page', 'perPage', 'filter',
     ]);
 
-    const users = await Database
-      .select('users.id')
-      .from('users')
-      .leftJoin('people', 'users.person_id', 'people.id')
+    const users = await User.query()
       .orWhere('users.email', 'iLike', `%${filter}%`)
-      .orWhere('people.name', 'iLike', `%${filter}%`)
-      .orWhere('people.document', 'iLike', `%${filter}%`)
-      .paginate(page, perPage);
-
-    const ids = users.data.map((user) => user.id);
-
-    const relationships = await User.query()
-      .whereIn('id', ids)
-      .with('person')
+      .orWhere('users.name', 'iLike', `%${filter}%`)
+      .orWhere('users.document', 'iLike', `%${filter}%`)
       .with('roles')
       .with('permissions')
-      .fetch();
+      .paginate(page, perPage);
 
-    return { ...users, data: relationships };
+    return users;
   }
 
   async show({ params }) {
     const user = await User.findOrFail(params.id);
-    await user.loadMany(['person', 'roles', 'permissions']);
+    await user.loadMany(['roles', 'permissions']);
     return user;
   }
 
@@ -63,40 +52,23 @@ class UserController {
       await user.roles().attach(roles);
     }
 
-    await user.loadMany(['person', 'roles', 'permissions']);
+    await user.loadMany(['roles', 'permissions']);
     return user;
   }
 
   async update({ params, request }) {
     const user = await User.findOrFail(params.id);
     const {
-      permissions, roles, person, ...data
+      permissions, roles, ...data
     } = request.only([
       'email',
       'password',
       'permissions',
-      'person',
       'roles',
     ]);
 
-    const _person = {
-      name: person.name,
-      nickname: person.nickname,
-      birthday: person.birthday,
-      document: person.document.replace(/\D/g, ''),
-      document_secondary: person.document_secondary,
-      mather: person.mather,
-      father: person.father,
-      gender: person.gender,
-      description: person.description,
-    };
-
     user.merge(data);
     await user.save();
-
-    if (person) {
-      await user.person().update(_person);
-    }
 
     if (permissions) {
       await user.permissions().sync(permissions);
@@ -106,7 +78,7 @@ class UserController {
       await user.roles().sync(roles);
     }
 
-    await user.loadMany(['person', 'roles', 'permissions']);
+    await user.loadMany(['roles', 'permissions']);
     return user;
   }
 

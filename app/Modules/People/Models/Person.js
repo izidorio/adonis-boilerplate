@@ -5,9 +5,7 @@ const Model = use('Model');
 
 class Person extends Model {
   /* relacionamentos */
-  user() {
-    return this.hasOne('App/Modules/Users/Models/User');
-  }
+
 }
 
 module.exports = Person;
