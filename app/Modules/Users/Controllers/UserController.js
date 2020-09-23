@@ -16,9 +16,9 @@ class UserController {
     ]);
 
     const users = await User.query()
-      .orWhere('users.email', 'iLike', `%${filter}%`)
-      .orWhere('users.name', 'iLike', `%${filter}%`)
-      .orWhere('users.document', 'iLike', `%${filter}%`)
+      .orWhere('email', 'iLike', `%${filter}%`)
+      .orWhere('name', 'iLike', `%${filter}%`)
+      .orWhere('document', 'iLike', `%${filter}%`)
       .with('roles')
       .with('permissions')
       .paginate(page, perPage);
@@ -34,9 +34,10 @@ class UserController {
 
   async store({ request }) {
     const { permissions, roles, ...data } = request.only([
-      'person_id',
+      'name',
+      'document',
       'email',
-      'password',
+      'phone',
       'permissions',
       'roles',
     ]);
@@ -61,8 +62,10 @@ class UserController {
     const {
       permissions, roles, ...data
     } = request.only([
+      'name',
+      'document',
       'email',
-      'password',
+      'phone',
       'permissions',
       'roles',
     ]);

@@ -15,9 +15,9 @@ class Store {
 
   get rules() {
     return {
+      name: 'required|string|min:4',
       email: 'required|email|unique:users',
-      person_id: 'required|unique:users|exists:people,id',
-      password: 'string',
+      document: 'required|max:11|unique:users',
       roles: 'array|exists:roles,id',
       permissions: 'array|exists:permissions,id',
     };
@@ -27,7 +27,7 @@ class Store {
     const messages = Antl.list('validation');
     return {
       ...messages,
-      'person.name.required': 'o nome é obrigatório',
+      'document.max': 'O CPF não está no formato válido. Enviar apenas números',
     };
   }
 }

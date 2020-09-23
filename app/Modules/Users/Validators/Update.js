@@ -17,10 +17,9 @@ class Update {
     const { id } = this.ctx.params;
 
     return {
+      name: 'required|string|min:4',
       email: `required|unique:users,email,id,${id}`,
-      password: 'string',
-      'person.name': 'required',
-      'person.document': `required|unique:people,document,id,${id}`,
+      document: `required|max:11|unique:users,document,id,${id}`,
       roles: 'array|exists:roles,id',
       permissions: 'array|exists:permissions,id',
     };
@@ -30,9 +29,7 @@ class Update {
     const messages = Antl.list('validation');
     return {
       ...messages,
-      'person.name.required': 'o nome é obrigatório',
-      'person.document.required': 'o CPF é obrigatório',
-      'person.document.unique': 'o CPF já está em uso',
+      'document.max': 'O CPF não está no formato válido. Enviar apenas números',
     };
   }
 }

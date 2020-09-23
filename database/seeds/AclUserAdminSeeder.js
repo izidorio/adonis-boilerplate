@@ -50,7 +50,7 @@ class AclUserAdminSeeder {
     const user = await Factory.model('App/Modules/Users/Models/User').create({
       name: 'Izidorio Bento',
       email: 'izidoriojr@gmail.com',
-      document: '12345678901',
+      document: '01234567890',
       password: '123456',
       ...timestamps,
     });

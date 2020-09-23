@@ -7,9 +7,7 @@ const jwtParse = require('../../../utils/jwtParse');
 
 const Env = use('Env');
 const Mail = use('Mail');
-const Person = use('App/Modules/People/Models/Person');
 const User = use('App/Modules/Users/Models/User');
-
 const Token = use('App/Modules/Users/Models/Token');
 
 class AuthController {
@@ -20,8 +18,7 @@ class AuthController {
     ]);
 
     try {
-      const person = await Person.findByOrFail('document', document);
-      const { token } = await auth.attempt(person.id.toString(), password);
+      const { token } = await auth.attempt(document, password);
       const tokenParse = jwtParse(token);
 
       const user = await User.findOrFail(tokenParse.uid);
@@ -42,7 +39,6 @@ class AuthController {
     const email = request.input('email');
     try {
       const user = await User.findByOrFail('email', email);
-      const person = await Person.findOrFail(user.person_id);
 
       const random = await promisify(randomBytes)(24);
       const token = random.toString('hex');
@@ -56,7 +52,7 @@ class AuthController {
 
       Mail.send(
         'emails.forgot-password',
-        { username: person.name, resetPasswordUrl },
+        { username: user.name, resetPasswordUrl },
         (message) => {
           message
             .to(user.email)

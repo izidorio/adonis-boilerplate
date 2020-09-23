@@ -9,13 +9,13 @@ class UserSchema extends Schema {
 
     this.create('users', (table) => {
       // table.increments();
-      // table.integer('person_id').unsigned().notNullable().index();
       table.uuid('id').primary().defaultTo(this.db.raw('uuid_generate_v4()'));
       table.string('name').notNullable();
-      table.string('document').notNullable();
-      table.string('phone');
-      table.string('email').notNullable().unique().index();
+      table.string('document').notNullable().unique().index();
+      table.string('email').notNullable().unique();
       table.string('password').notNullable();
+      table.string('phone');
+      table.string('avatar');
       table.timestamps();
     });
   }
