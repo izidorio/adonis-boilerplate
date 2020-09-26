@@ -59,5 +59,6 @@
   "people_id:exists": "o ID deve existir na tabela pessoas.",
   "person.name:required": "o nome é obrigatório",
   "person.document:required": "o CPF é obrigatório",
-  "person.document:unique": "o CPF já está em uso"
+  "person.document:unique": "o CPF já está em uso",
+  "phone.required": "o Telefone é obrigatório"
 }

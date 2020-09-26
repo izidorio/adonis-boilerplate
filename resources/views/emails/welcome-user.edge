@@ -1,0 +1,21 @@
+
+@layout('emails.layouts.main')
+@section('content')
+
+<h2>Olá {{ username}}</h2>
+<p>Seja bem-vindo ao {{ APP_NAME() }}.</p>
+<p>
+  Para criar uma senha segura você dererá combinar:<br/>
+  Letras maíusculas e minúsculas, Números e Caracteres especiais.<br>
+  Também sua senha deve ter no mínimo 8 caracteres.
+</p>
+<p>Click no botão abaixo para criar sua senha de acesso.</p>
+<p>
+  <a href="{{resetPasswordUrl}}" target="_blank" style="text-decoration: none; color: #fff; font-weight: 400; min-width: 200px; padding: 8px 16px; border-radius: 4px; background-color: #4285F4;" >
+    Criar senha
+  </a>
+</p>
+
+
+
+@endsection

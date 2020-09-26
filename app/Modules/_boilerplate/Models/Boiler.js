@@ -5,7 +5,7 @@ const Model = use('Model');
 
 const Env = use('Env');
 
-class Entity extends Model {
+class Boiler extends Model {
   static get hidden() {
     return ['created_at', 'updated_at'];
   }
@@ -26,4 +26,5 @@ class Entity extends Model {
   }
 }
 
-module.exports = Entity;
+module.exports = Boiler;
+/** Altere o Nome do Model */

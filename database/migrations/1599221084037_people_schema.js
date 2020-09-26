@@ -8,8 +8,8 @@ class PeopleSchema extends Schema {
     await this.db.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
 
     this.create('people', (table) => {
-      table.uuid('id').primary().defaultTo(this.db.raw('uuid_generate_v4()'));
-      // table.increments();
+      // table.uuid('id').primary().defaultTo(this.db.raw('uuid_generate_v4()'));
+      table.increments();
       table.string('name');
       table.string('nickname');
       table.date('birthday');

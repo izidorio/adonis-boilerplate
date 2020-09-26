@@ -22,6 +22,6 @@ Route.group(() => {
 module.exports = Route;
 
 /**
- * registrar as rotas em start/routes.js
- * use('App/Modules/Users/Routes/<Name>Controller');
+ * fazer o import das rotas em: start/routes.js
+ * use('App/Modules/Users/Routes/<Name>Routes');
  * */

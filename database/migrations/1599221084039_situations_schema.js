@@ -8,8 +8,8 @@ class PersonSituationSchema extends Schema {
     this.create('situations', (table) => {
       table.increments();
 
-      table.uuid('person_id').notNullable();
-      // table.integer('person_id').unsigned().notNullable().index();
+      // table.uuid('person_id').notNullable().references('id').inTable('people');
+      table.integer('person_id').unsigned().notNullable().index();
       table.foreign('person_id').references('id').inTable('people').onDelete('cascade');
 
       table.string('situation_type').notNullable().index();

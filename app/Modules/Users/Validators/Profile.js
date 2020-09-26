@@ -2,7 +2,7 @@
 
 const Antl = use('Antl');
 
-class Store {
+class Update {
   get validateAll() {
     return true;
   }
@@ -16,11 +16,7 @@ class Store {
   get rules() {
     return {
       name: 'required|string|min:4',
-      document: 'required|max:11|unique:users',
-      email: 'required|email|unique:users',
-      phone: 'required|string',
-      roles: 'array|exists:roles,id',
-      permissions: 'array|exists:permissions,id',
+      phone: 'required',
     };
   }
 
@@ -28,9 +24,9 @@ class Store {
     const messages = Antl.list('validation');
     return {
       ...messages,
-      'document.max': 'O CPF não está no formato válido. Enviar apenas números',
+      'phone.required': 'O Telefone é obrigatório',
     };
   }
 }
 
-module.exports = Store;
+module.exports = Update;

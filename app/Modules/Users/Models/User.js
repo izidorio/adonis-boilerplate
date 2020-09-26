@@ -79,6 +79,12 @@ class User extends Model {
     return { roles: rolesId, permissions: permissionsAllId };
   }
 
+  async isAdmin() {
+    const rules = await this.getRoles();
+
+    return rules.some((rule) => rule === 'admin');
+  }
+
   /* relacionamentos */
   roles() {
     return this.belongsToMany('Adonis/Acl/Role');

@@ -24,6 +24,9 @@ const providers = [
   '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/antl/providers/AntlProvider',
   'adonis-acl/providers/AclProvider',
+  'adonis-guard/providers/GuardProvider',
+  'adonis-throttle/providers/ThrottleProvider',
+  '@adonisjs/redis/providers/RedisProvider',
   path.join(__dirname, '..', 'providers', 'CustomValidationProvider'),
 ];
 
@@ -56,6 +59,7 @@ const aceProviders = [
 const aliases = {
   Role: 'Adonis/Acl/Role',
   Permission: 'Adonis/Acl/Permission',
+  Throttle: 'Adonis/Addons/Throttle',
 };
 
 /*

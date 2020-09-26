@@ -56,12 +56,12 @@ class AuthController {
         (message) => {
           message
             .to(user.email)
-            .from('noreply@dsci.com')
+            .from(Env.get('MAIL_FOM'))
             .subject(`${Env.get('APP_NAME')} - Recuperar Acesso`);
         },
       );
     } catch (err) {
-      console.log('[forgot]', err);
+      console.log('[forgot]', err); // eslint-disable-line
       return response
         .status(200)
         .json({ message: 'Se você forneceu um e-mail cadastrado em breve receberá um e-mail con o link para você criar uma nova senha.' });

@@ -1,11 +1,19 @@
 'use strict';
 
+/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Role = use('Role');
 
 class RoleController {
-  async index() {
-    const data = await Role.query().with('permissions').fetch();
-    return data;
+  async index({ auth }) {
+    const user = await auth.getUser();
+    const isAdmin = await user.isAdmin();
+
+    const query = Role.query().with('permissions');
+
+    !isAdmin && query.whereNot('slug', 'admin');
+
+    const roles = await query.fetch();
+    return roles;
   }
 
   async show({ params }) {

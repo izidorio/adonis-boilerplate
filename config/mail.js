@@ -98,4 +98,20 @@ module.exports = {
   ethereal: {
     driver: 'ethereal',
   },
+
+  /*
+  |--------------------------------------------------------------------------
+  | SES AWS
+  |--------------------------------------------------------------------------
+  */
+  ses: {
+    driver: 'ses',
+    apiVersion: '2010-12-01',
+    accessKeyId: Env.get('SES_ACCESS_KEY_ID'),
+    secretAccessKey: Env.get('SES_SECRET_ACCESS_KEY'),
+    region: Env.get('SES_REGION'),
+    sslEnabled: true,
+    sendingRate: 10,
+    maxConnections: 5,
+  },
 };

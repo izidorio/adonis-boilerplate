@@ -18,8 +18,9 @@ class Update {
 
     return {
       name: 'required|string|min:4',
-      email: `required|unique:users,email,id,${id}`,
       document: `required|max:11|unique:users,document,id,${id}`,
+      email: `required|unique:users,email,id,${id}`,
+      phone: 'required|string',
       roles: 'array|exists:roles,id',
       permissions: 'array|exists:permissions,id',
     };
