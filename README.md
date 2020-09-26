@@ -8,7 +8,6 @@ cp .env.example .env
 ```
 - verificar as credenciais para o banco Postgres (se for usar o exemplo abaixo do docker não é preciso alterar)
 - verificar as credenciais para o envio de e-mail o drive esta setado para trabalhar com smtp, mas este boilerplate já está pre-configurado com `aws-sdk` para utilizar o SES para isso altere as variáveis  `MAIL_CONNECTION=ses` e `SES_` com as chaves IAM de privilégio para utilizar o SES
-- Para otimizar o Throttle opte por trabalhar com Redis `THROTTLE_DRIVER=redis`
 
 ### Docker containers
  * postgres
@@ -17,8 +16,16 @@ docker run --name postgis -e POSTGRES_PASSWORD=docker -p 5432:5432 -d -t kartoza
 ```
  * redis ( Throttle )
 ```
-docker run -d -p 6379:6379 -i -t redis:alpine
+docker run --name redis -p 6379:6379 -d -t redis:alpine
 ```
+### Docker compose
+ * uma opção para usar produção. Se não for um Cloud DB uses ese essa opção para persistir os dados.
+ * configure as variáveis de ambiente em: docker/.env Informe o nome, usuário e senha do banco.
+ ```
+ cd docker
+ 
+ docker-compose -up -d 
+ ``` 
 
 ### Criar a Database
 `usar o nome especificado no .env DB_DATABASE=adonis`
