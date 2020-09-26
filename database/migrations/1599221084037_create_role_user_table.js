@@ -8,8 +8,8 @@ class RoleUserTableSchema extends Schema {
       table.increments();
       table.integer('role_id').unsigned().index();
       table.foreign('role_id').references('id').on('roles').onDelete('cascade');
-      // table.uuid('user_id').notNullable().index();
-      table.integer('user_id').unsigned().index();
+      // table.integer('user_id').unsigned().index();
+      table.uuid('user_id').notNullable().index();
       table.foreign('user_id').references('id').on('users').onDelete('cascade');
       table.timestamps();
     });

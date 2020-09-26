@@ -27,8 +27,10 @@ docker run --name redis -p 6379:6379 -d -t redis:alpine
  docker-compose -up -d 
  ``` 
 
-### Criar a Database
+### Se vc não optou em rodar o Docker Compose será preciso Criar a Database
 `usar o nome especificado no .env DB_DATABASE=adonis`
+
+> Eu tenho utilizado o [DBeaver](https://dbeaver.io/download/) Free Universal Database Tool
 
 ### Gerar uma chave para o projeto
 ```js
@@ -46,6 +48,7 @@ const user = await Factory.model('App/Modules/Users/Models/User').make({
 });
 ...
 ```
+
 ### Rodar as migrations e seed
 ```bash
 adonis migration:run --seed

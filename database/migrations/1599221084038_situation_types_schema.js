@@ -7,10 +7,7 @@ class SituationSchema extends Schema {
   up() {
     this.create('situation_types', (table) => {
       table.increments();
-      table.string('name')
-        .notNullable()
-        .unique()
-        .index();
+      table.string('name').notNullable().unique().index();
       table.timestamps();
     });
   }
