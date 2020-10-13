@@ -38,7 +38,7 @@ adonis key:generate
 ```
 
 ### Alterar as credenciais do Usuário admin
-em: `database/seeds/AclUserAdminSeeder.js`
+em: `database/seeds/010_UserAdminSeeder.js`
 ```js
 ...
 const user = await Factory.model('App/Modules/Users/Models/User').make({
