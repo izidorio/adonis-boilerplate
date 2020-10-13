@@ -24,7 +24,7 @@ docker run --name redis -p 6379:6379 -d -t redis:alpine
  ```
  cd docker
  
- docker-compose -up -d 
+ docker-compose up -d 
  ``` 
 
 ### Se vc não optou em rodar o Docker Compose será preciso Criar a Database
